@@ -25,14 +25,14 @@ type RpcResponsePayload struct {
 var RpcURL string
 
 
-func getBlockNumber(w http.ResponseWriter, r *http.Request) {
+func GetBlockNumber(w http.ResponseWriter, r *http.Request) {
 	requestBody := RpcRequestPayload{
 		JSONRPC: "2.0",
 		Method:  "eth_blockNumber",
 		ID:      1,
 	}
 
-	responseBody, err := postRPCRequest(requestBody)
+	responseBody, err := PostRPCRequest(requestBody)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -41,7 +41,7 @@ func getBlockNumber(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(responseBody)
 }
 
-func getBlockByNumber(w http.ResponseWriter, r *http.Request) {
+func GetBlockByNumber(w http.ResponseWriter, r *http.Request) {
 	requestBody := RpcRequestPayload{
 		JSONRPC: "2.0",
 		Method:  "eth_getBlockByNumber",
@@ -52,7 +52,7 @@ func getBlockByNumber(w http.ResponseWriter, r *http.Request) {
 		ID: 2,
 	}
 
-	responseBody, err := postRPCRequest(requestBody)
+	responseBody, err := PostRPCRequest(requestBody)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -61,7 +61,7 @@ func getBlockByNumber(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(responseBody)
 }
 
-func postRPCRequest(requestBody RpcRequestPayload) (RpcResponsePayload, error) {
+func PostRPCRequest(requestBody RpcRequestPayload) (RpcResponsePayload, error) {
 	RpcURL := os.Getenv("RPC_URL")
 	log.Println("RPC_URL: ", RpcURL)
 
@@ -94,8 +94,8 @@ func main() {
 		fmt.Fprintf(w, "TrustWallet RPC Gateway!")
 	})
 
-	http.HandleFunc("/getBlock", getBlockNumber)
-	http.HandleFunc("/getBlockByNumber", getBlockByNumber)
+	http.HandleFunc("/getBlock", GetBlockNumber)
+	http.HandleFunc("/getBlockByNumber", GetBlockByNumber)
 
 	port := os.Getenv("APP_PORT")
 	if port == "" {
