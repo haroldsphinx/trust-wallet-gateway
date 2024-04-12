@@ -35,12 +35,18 @@ Here is a high-level view of the architecture:
 The Makefile includes the commands to lint, test, build the Docker image, and push the image to Docker Hub. 
 
 ```shell
-make lint # Run lint
-make test # Run tests
-make docker-build # Build Docker image
-make docker-push # Push Docker image
-make install-dependencies # Install dependencies
-make deploy # Deploy to AWS ECS Fargate
+# Run lint
+make lint 
+# Run tests
+make test 
+# Build Docker image
+make docker-build 
+# Push Docker image
+make docker-push 
+ # Install dependencies
+make install-dependencies
+# Deploy to AWS ECS Fargate
+make deploy 
 ```
 
 ## Continuous Integration and Deployment
