@@ -59,7 +59,7 @@ This project uses GitHub Actions for CI/CD. When changes are pushed to the `main
 4. Deployment of the Docker image to the Kubernetes cluster in the AWS EKS environment.
 5. Setting up the AWS ECS Fargate cluster and deploying the service.
 6. The service is accessible via the public IP address of the AWS ECS Fargate cluster.
-7. The GitHub Actions workflow is defined in the `.github/workflows/deploy.yml` file and its used to autoae the deployment of the service to AWS ECS Fargate.
+7. The GitHub Actions workflow is defined in the `.github/workflows/build-deploy.yml` file and its used to autoae the deployment of the service to AWS ECS Fargate.
 8. 
 
 

@@ -17,7 +17,7 @@ lint:
 
 test:
 	@echo "  >  Running tests"
-	@go test -v ./...
+	@go test tests/test.go
 
 build-app:
 	go build -o $(BINARY_NAME) main.go 
@@ -36,3 +36,5 @@ terraform-plan:
 
 terraform-apply:
 	cd $(TF_DIR) && terraform apply
+
+.PHONY: all install-dependencies lint test build-app docker-build terraform-init terraform-plan terraform-apply

@@ -66,12 +66,12 @@ module "ecs_task_definition" {
 
       mount_points = [
         {
-          sourceVolume  = "vol",
-          containerPath = "/vol"
+          sourceVolume  = "data",
+          containerPath = "/data"
         }
       ]
 
-      entrypoint = ["/app/trust-wallet-proxy", "-c"]
+      entrypoint = ["/app/trust-wallet-gateway"]
     }
   }
 
@@ -125,7 +125,7 @@ module "alb" {
       protocol = "HTTP"
 
       forward = {
-        target_group_key = "ex_ecs"
+        target_group_key = "ecs"
       }
     }
   }
